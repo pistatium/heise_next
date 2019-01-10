@@ -1,0 +1,11 @@
+runtime: python37
+
+entrypoint: gunicorn --bind 0.0.0.0:$PORT -c gunicorn_conf.py main:app
+
+handlers:
+- url: /static
+  static_dir: static/
+
+- url: /.*
+  script: auto
+  secure: always
