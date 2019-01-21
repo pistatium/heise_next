@@ -1,4 +1,4 @@
-google-cloud-datastore
+gcloud-aio-datastore
 responder
 gunicorn
 uvicorn

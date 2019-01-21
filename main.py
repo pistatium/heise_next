@@ -3,6 +3,7 @@ from logging import getLogger
 import responder
 from google.cloud import datastore
 
+
 client = datastore.Client()
 
 app = responder.API()
@@ -10,7 +11,7 @@ app = responder.API()
 
 @app.route("/test")
 async def test(req, resp,):
-    key = client.key('test')
+    key = Key('test')
     item = datastore.Entity(key)
     item.update({
         'count': item.get('count', 0) + 1
@@ -21,7 +22,7 @@ async def test(req, resp,):
 
 @app.route("/")
 async def root(req, resp):
-    resp.text = f"/test"
+    resp.content = app.template('index.html')
 
 
 if __name__ == '__main__':
